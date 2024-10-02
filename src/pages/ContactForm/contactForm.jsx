@@ -1,10 +1,17 @@
-import React from 'react';
+import React from "react";
+import ClientInfo from "../../components/contact/clientInfo";
+import AddressInfo from "../../components/contact/adressInfo";
+import SubmitButton from "../../components/contact/submitButton";
+import { MainContainer, CustomMainTypography } from "./contactForm.styles";
 
 const ContactForm = () => {
   return (
-    <>
-      <h1>Formulário de Contato</h1>
-    </>
+    <MainContainer>
+      <CustomMainTypography>Formulário de Contato</CustomMainTypography>
+      <ClientInfo />
+      <AddressInfo />
+      <SubmitButton />
+    </MainContainer>
   );
 };
 
