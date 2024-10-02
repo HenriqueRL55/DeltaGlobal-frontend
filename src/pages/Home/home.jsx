@@ -46,7 +46,6 @@ const Home = () => {
           >
             <CustomButton
               variant="contained"
-      
               endIcon={<SearchIcon />}
               component={Link}
               to="/search"
