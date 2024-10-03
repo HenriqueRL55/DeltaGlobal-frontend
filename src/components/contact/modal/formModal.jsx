@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ModalContainer,
   CustomModalTypography,
@@ -11,12 +11,27 @@ import {
   InfoField,
 } from "./formModal.styles";
 import { Grid } from "@mui/material";
+import ConfirmModal from "../confirmModal/confirmModal";
 
-const Modal = ({ onClose, onConfirm }) => {
+const Modal = ({ formData, onClose, onConfirm }) => {
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
+  const handleOpenConfirmModal = () => {
+    setIsConfirmModalOpen(true);
+  };
+  const handleCloseConfirmModal = () => {
+    setIsConfirmModalOpen(false);
+  };
+
+  const handleConfirmAction = () => {
+    setIsConfirmModalOpen(false);
+    onConfirm();
+  };
+
   return (
     <ModalContainer>
       <ModalContent>
-        <img src="src/assets/images/checkIcon.svg" />
+        <img src="src/assets/images/checkIcon.svg" alt="Ícone de Check" />
 
         <CustomModalTypography>
           Por favor, revise seus dados antes de continuar:
@@ -26,42 +41,50 @@ const Modal = ({ onClose, onConfirm }) => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TitleField>Nome</TitleField>
-              <InfoField>Ricardo</InfoField>
+              <InfoField>{formData.name}</InfoField>
             </Grid>
             <Grid item xs={12} md={6}>
               <TitleField>E-mail</TitleField>
-              <InfoField>ricardodasilva@deltaglobal.com.br</InfoField>
+              <InfoField>{formData.email}</InfoField>
             </Grid>
 
             <Grid item xs={12} md={6}>
               <TitleField>RG</TitleField>
-              <InfoField>Ricardo</InfoField>
+              <InfoField>{formData.rg}</InfoField>
             </Grid>
             <Grid item xs={12} md={6}>
               <TitleField>CPF</TitleField>
-              <InfoField>Ricardo</InfoField>
+              <InfoField>{formData.cpf}</InfoField>
             </Grid>
 
             <Grid item xs={12} md={6}>
               <TitleField>Telefone</TitleField>
-              <InfoField>Ricardo</InfoField>
+              <InfoField>{formData.phone}</InfoField>
             </Grid>
             <Grid item xs={12} md={6}>
               <TitleField>Data de Nascimento</TitleField>
-              <InfoField>Ricardo</InfoField>
+              <InfoField>{formData.birthDate}</InfoField>
             </Grid>
 
             <Grid item xs={12} md={12}>
               <TitleField>Endereço</TitleField>
-              <InfoField>Ricardo</InfoField>
+              <InfoField>{`${formData.address} ${formData.number} ${formData.neighborhood} ${formData.city} ${formData.state} ${formData.cep}`}</InfoField>
             </Grid>
           </Grid>
         </InfoGroup>
 
         <ButtonGroup>
-          <ConfirmButton onClick={onConfirm}>Confirmar</ConfirmButton>
+          <ConfirmButton onClick={handleOpenConfirmModal}>
+            Confirmar
+          </ConfirmButton>
           <CancelButton onClick={onClose}>Cancelar</CancelButton>
         </ButtonGroup>
+
+        <ConfirmModal
+          open={isConfirmModalOpen}
+          handleClose={handleCloseConfirmModal}
+          handleConfirm={handleConfirmAction}
+        />
       </ModalContent>
     </ModalContainer>
   );

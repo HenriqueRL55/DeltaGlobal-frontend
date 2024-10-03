@@ -52,6 +52,8 @@ export const InfoField = styled.div`
   font-weight: regular;
   word-break: break-word; 
   max-width: 100%; 
+  overflow-y: auto;
+  max-height: 50px;
 `;
 
 export const CustomModalTypography = styled.div`
