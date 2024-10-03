@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Grid, MenuItem } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import InputMask from "react-input-mask";
 import {
   InfoContainer,
   CustomInputLabel,
@@ -32,11 +33,16 @@ const ClientInfo = ({ setFormData }) => {
       <CustomTypography>Dados do Cliente</CustomTypography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={7.5}>
-          <CustomInputLabel required    sx={{
+          <CustomInputLabel
+            required
+            sx={{
               "& .MuiInputLabel-asterisk": {
                 color: "#FF4B6A",
               },
-            }}>Nome</CustomInputLabel>
+            }}
+          >
+            Nome
+          </CustomInputLabel>
           <CustomSelect
             slotProps={{
               select: {
@@ -73,21 +79,34 @@ const ClientInfo = ({ setFormData }) => {
             onChange={(e) => handleInputChange("email", e.target.value)}
           />
         </Grid>
+
         <Grid item xs={12} md={3}>
-          <CustomInputLabel required    sx={{
+          <CustomInputLabel
+            required
+            sx={{
               "& .MuiInputLabel-asterisk": {
                 color: "#FF4B6A",
               },
-            }}>CPF</CustomInputLabel>
-          <CustomOutlinedInput
-            placeholder="000.000.000-00"
+            }}
+          >
+            CPF
+          </CustomInputLabel>
+          <InputMask
+            mask="999.999.999-99"
             value={cpf}
             onChange={handleCpfChange}
-            error={!isCpfValid}
-            fullWidth
-          />
+          >
+            {() => (
+              <CustomOutlinedInput
+                placeholder="000.000.000-00"
+                error={!isCpfValid}
+                fullWidth
+              />
+            )}
+          </InputMask>
           {!isCpfValid && <p style={{ color: "red" }}>CPF inválido</p>}
         </Grid>
+
         <Grid item xs={12} md={3}>
           <CustomInputLabel>RG</CustomInputLabel>
           <CustomOutlinedInput
@@ -96,14 +115,17 @@ const ClientInfo = ({ setFormData }) => {
             onChange={(e) => handleInputChange("rg", e.target.value)}
           />
         </Grid>
+
         <Grid item xs={12} md={3}>
           <CustomInputLabel>Telefone</CustomInputLabel>
-          <CustomOutlinedInput
-            placeholder="(00) 00000-0000"
-            fullWidth
+          <InputMask
+            mask="(99) 99999-9999"
             onChange={(e) => handleInputChange("phone", e.target.value)}
-          />
+          >
+            {() => <CustomOutlinedInput placeholder="(00) 00000-0000" fullWidth />}
+          </InputMask>
         </Grid>
+
         <Grid item xs={12} md={3}>
           <CustomInputLabel required>Data de Nascimento</CustomInputLabel>
           <CustomTextField
