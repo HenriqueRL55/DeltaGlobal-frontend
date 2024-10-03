@@ -5,6 +5,7 @@ import ClientInfo from "../../components/contact/clientInfo";
 import AddressInfo from "../../components/contact/adressInfo";
 import SubmitButton from "../../components/contact/submitButton";
 import { Alert, Grid } from "@mui/material";
+import { validateCPF } from "../../services/validateCPF";
 
 const ContactForm = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,6 +24,7 @@ const ContactForm = () => {
     state: "",
     cep: "",
   });
+  const [isCpfValid, setIsCpfValid] = useState(true);
 
   const validateRequiredFields = () => {
     const { name, email, cpf } = formData;
@@ -38,7 +40,20 @@ const ContactForm = () => {
   const handleFormSubmit = () => {
     const missing = validateRequiredFields();
 
-    if (missing.length > 0) {
+    // Verifica se o CPF é válido
+    const isCpfCurrentlyValid = validateCPF(formData.cpf);
+    setIsCpfValid(isCpfCurrentlyValid);
+
+    if (missing.length > 0 || !isCpfCurrentlyValid) {
+      let alertMessage =
+        "Por favor, preencha os seguintes campos obrigatórios: ";
+      if (missing.length > 0) {
+        alertMessage += missing.join(", ");
+      }
+      if (!isCpfCurrentlyValid) {
+        alertMessage += missing.length > 0 ? " e CPF inválido" : "CPF inválido";
+      }
+
       setMissingFields(missing);
     } else {
       setMissingFields([]);
@@ -50,14 +65,25 @@ const ContactForm = () => {
     <MainContainer>
       <CustomMainTypography>Formulário de Contato</CustomMainTypography>
 
-      {missingFields.length > 0 && (
+      {missingFields.length > 0 || !isCpfValid ? (
         <Grid item xs={12}>
           <Alert severity="error">
-            Por favor, preencha os seguintes campos obrigatórios:{" "}
-            {missingFields.join(", ")}
+            {missingFields.length > 0 && (
+              <>
+                Por favor, preencha os seguintes campos obrigatórios:{" "}
+                {missingFields.join(", ")}
+              </>
+            )}
+            {!isCpfValid && (
+              <span>
+                {missingFields.length > 0
+                  ? " e o CPF está inválido."
+                  : "O CPF está inválido"}
+              </span>
+            )}
           </Alert>
         </Grid>
-      )}
+      ) : null}
 
       <ClientInfo setFormData={setFormData} />
       <AddressInfo setFormData={setFormData} />

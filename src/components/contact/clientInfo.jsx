@@ -122,7 +122,9 @@ const ClientInfo = ({ setFormData }) => {
             mask="(99) 99999-9999"
             onChange={(e) => handleInputChange("phone", e.target.value)}
           >
-            {() => <CustomOutlinedInput placeholder="(00) 00000-0000" fullWidth />}
+            {() => (
+              <CustomOutlinedInput placeholder="(00) 00000-0000" fullWidth />
+            )}
           </InputMask>
         </Grid>
 
