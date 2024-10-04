@@ -5,7 +5,7 @@ import React from "react";
 import AppRouter from "./routes/routers";
 
 // Styles
-import "./App.css";
+import "././styles/App.css";
 
 // Components
 import Header from "./components/header/header";

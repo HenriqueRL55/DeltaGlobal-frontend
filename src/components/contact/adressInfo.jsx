@@ -23,7 +23,6 @@ import { brazilStates } from "../../data/clientData";
 // Hooks
 import useAddressByCep from "../../hooks/useAdressByCep";
 
-
 const AddressInfo = ({ setFormData }) => {
   const [cep, setCep] = useState("");
   const { address, fetchAddress, loading, error } = useAddressByCep();

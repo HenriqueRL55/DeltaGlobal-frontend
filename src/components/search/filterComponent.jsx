@@ -1,21 +1,16 @@
-//React
+// React
 import React, { useState } from "react";
 
-//Material UI
-import { MenuItem, Grid } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+// Material UI
+import { Grid } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-//Styled Components
-import {
-  InfoContainer,
-  CustomInputLabel,
-  CustomTextField,
-  CustomSelect,
-  CustomButton,
-} from "./styleSearch";
+// Components
+import { InputField } from "../common/InputField";
+import SelectField from "../common/SelectField";
 
-
+// Styled Components
+import { InfoContainer, CustomButton } from "./styleSearch";
 
 const FilterComponent = ({ filters, setLocalFilters, products }) => {
   const [localFilters, setLocal] = useState(filters);
@@ -33,84 +28,55 @@ const FilterComponent = ({ filters, setLocalFilters, products }) => {
     <InfoContainer>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} sm={6} md={3}>
-          <CustomInputLabel>Pesquise por ID</CustomInputLabel>
-          <CustomTextField
-            fullWidth
-            placeholder="Pesquise"
-            variant="outlined"
+          <InputField
+            label="Pesquise por ID"
             name="search"
             value={localFilters.search}
             onChange={handleInputChange}
-            slotProps={{
-              input: {
-                startAdornment: <SearchIcon />,
-              },
-            }}
+            placeholder="Pesquise"
           />
         </Grid>
 
         <Grid item xs={12} sm={6} md={2}>
-          <CustomInputLabel>Produto</CustomInputLabel>
-          <CustomSelect
-            fullWidth
+          <SelectField
+            label="Produto"
             name="product"
             value={localFilters.product}
             onChange={handleInputChange}
-            displayEmpty
-          >
-            <MenuItem value="">Todos</MenuItem>
-            {products.map((product, index) => (
-              <MenuItem key={index} value={product.produto}>
-                {product.produto}
-              </MenuItem>
-            ))}
-          </CustomSelect>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={2}>
-          <CustomInputLabel>Status</CustomInputLabel>
-          <CustomSelect
-            fullWidth
-            name="status"
-            value={localFilters.status}
-            onChange={handleInputChange}
-            displayEmpty
-          >
-            <MenuItem value="">Todos</MenuItem>
-            <MenuItem value="Ativo">Ativo</MenuItem>
-            <MenuItem value="Inativo">Inativo</MenuItem>
-          </CustomSelect>
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={2}>
-          <CustomInputLabel>Vigência de</CustomInputLabel>
-          <CustomTextField
-            fullWidth
-            type="date"
-            name="startDate"
-            value={localFilters.startDate}
-            onChange={handleInputChange}
-            slotProps={{
-              inputLabel: {
-                shrink: true,
-              },
-            }}
+            options={products.map(product => ({ value: product.produto, label: product.produto }))}
           />
         </Grid>
 
         <Grid item xs={12} sm={6} md={2}>
-          <CustomInputLabel>Até</CustomInputLabel>
-          <CustomTextField
-            fullWidth
+          <SelectField
+            label="Status"
+            name="status"
+            value={localFilters.status}
+            onChange={handleInputChange}
+            options={[
+              { value: "Ativo", label: "Ativo" },
+              { value: "Inativo", label: "Inativo" },
+            ]}
+          />
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={2}>
+          <InputField
+            label="Vigência de"
+            name="startDate"
+            value={localFilters.startDate}
+            onChange={handleInputChange}
             type="date"
+          />
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={2}>
+          <InputField
+            label="Até"
             name="endDate"
             value={localFilters.endDate}
             onChange={handleInputChange}
-            slotProps={{
-              inputLabel: {
-                shrink: true,
-              },
-            }}
+            type="date"
           />
         </Grid>
 
