@@ -1,5 +1,9 @@
+// React Hooks
 import { useState } from 'react';
+
+// Services
 import { getAddressByCep } from '../services/cepService';
+
 
 const useAddressByCep = () => {
   const [address, setAddress] = useState({});

@@ -1,7 +1,15 @@
+// React
 import React from "react";
+
+// Application Routes
 import AppRouter from "./routes/routers";
+
+// Styles
 import "./App.css";
+
+// Components
 import Header from "./components/header/header";
+
 
 function App() {
   return (

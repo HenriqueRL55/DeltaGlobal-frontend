@@ -1,5 +1,9 @@
+// Styled Components
 import styled from "styled-components";
+
+// Material UI Components
 import { Dialog } from "@mui/material";
+
 
 export const CustomDialog = styled(Dialog)`
   .MuiDialog-paper {

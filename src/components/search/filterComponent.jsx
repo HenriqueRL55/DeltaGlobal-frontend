@@ -1,5 +1,12 @@
+//React
 import React, { useState } from "react";
-import { MenuItem, Button, Grid } from "@mui/material";
+
+//Material UI
+import { MenuItem, Grid } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+//Styled Components
 import {
   InfoContainer,
   CustomInputLabel,
@@ -7,8 +14,8 @@ import {
   CustomSelect,
   CustomButton,
 } from "./styleSearch";
-import SearchIcon from "@mui/icons-material/Search";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+
 
 const FilterComponent = ({ filters, setLocalFilters, products }) => {
   const [localFilters, setLocal] = useState(filters);
@@ -34,8 +41,10 @@ const FilterComponent = ({ filters, setLocalFilters, products }) => {
             name="search"
             value={localFilters.search}
             onChange={handleInputChange}
-            InputProps={{
-              startAdornment: <SearchIcon />,
+            slotProps={{
+              input: {
+                startAdornment: <SearchIcon />,
+              },
             }}
           />
         </Grid>
@@ -81,7 +90,11 @@ const FilterComponent = ({ filters, setLocalFilters, products }) => {
             name="startDate"
             value={localFilters.startDate}
             onChange={handleInputChange}
-            InputLabelProps={{ shrink: true }}
+            slotProps={{
+              inputLabel: {
+                shrink: true,
+              },
+            }}
           />
         </Grid>
 
@@ -93,7 +106,11 @@ const FilterComponent = ({ filters, setLocalFilters, products }) => {
             name="endDate"
             value={localFilters.endDate}
             onChange={handleInputChange}
-            InputLabelProps={{ shrink: true }}
+            slotProps={{
+              inputLabel: {
+                shrink: true,
+              },
+            }}
           />
         </Grid>
 

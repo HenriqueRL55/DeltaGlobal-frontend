@@ -1,6 +1,12 @@
+// React
 import React from "react";
+
+// Material UI Icons
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+// Styled Components
 import { CustomButton } from "./stylesComponent";
+
 
 const SubmitButton = ({ onSubmit }) => {
   return (

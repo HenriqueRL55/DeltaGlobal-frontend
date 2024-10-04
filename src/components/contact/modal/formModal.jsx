@@ -1,4 +1,7 @@
+// React
 import React, { useState } from "react";
+
+// Styled Components
 import {
   ModalContainer,
   CustomModalTypography,
@@ -10,8 +13,13 @@ import {
   TitleField,
   InfoField,
 } from "./formModal.styles";
+
+// Material UI
 import { Grid } from "@mui/material";
+
+// Components
 import ConfirmModal from "../confirmModal/confirmModal";
+
 
 const Modal = ({ formData, onClose, onConfirm }) => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);

@@ -1,4 +1,7 @@
+// React
 import React from "react";
+
+// Styled Components
 import {
   CustomDialog,
   CustomModalTypography,
@@ -6,6 +9,7 @@ import {
   CancelButton,
   ButtonGroup,
 } from "./confirmModal.styles";
+
 
 const ConfirmModal = ({ open, handleClose, handleConfirm }) => {
   return (

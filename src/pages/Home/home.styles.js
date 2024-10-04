@@ -1,4 +1,7 @@
+// Styled Components
 import styled from 'styled-components';
+
+// Material UI Components
 import { Grid, Box } from "@mui/material";
 
 export const StyledContainer = styled(Grid)({

@@ -1,8 +1,14 @@
+// React
 import React from "react";
-import { Button } from "@mui/material";
+
+// React Router
 import { Link } from "react-router-dom";
+
+// Material UI Icons
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+// Styled Components
 import { CustomButton } from "../../components/contact/stylesComponent";
 import {
   StyledContainer,
@@ -11,6 +17,7 @@ import {
   StyledImage,
   StyledButtonBox,
 } from "./home.styles";
+
 
 const Home = () => {
   return (

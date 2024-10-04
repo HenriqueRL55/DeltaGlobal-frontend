@@ -1,7 +1,14 @@
+// React
 import React, { useState } from "react";
+
+// Material UI
 import { Grid, MenuItem } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+// Input Mask
 import InputMask from "react-input-mask";
+
+// Styled Components
 import {
   InfoContainer,
   CustomInputLabel,
@@ -10,8 +17,13 @@ import {
   CustomSelect,
   CustomOutlinedInput,
 } from "./stylesComponent";
+
+// Data
 import { clientNames } from "../../data/clientData";
+
+// Services
 import { validateCPF } from "../../services/validateCPF";
+
 
 const ClientInfo = ({ setFormData }) => {
   const [cpf, setCpf] = useState("");
@@ -131,7 +143,11 @@ const ClientInfo = ({ setFormData }) => {
           <CustomInputLabel required>Data de Nascimento</CustomInputLabel>
           <CustomTextField
             type="date"
-            InputLabelProps={{ shrink: true }}
+            slotProps={{
+              inputLabel: {
+                shrink: true,
+              },
+            }}
             fullWidth
             required
             onChange={(e) => handleInputChange("birthDate", e.target.value)}

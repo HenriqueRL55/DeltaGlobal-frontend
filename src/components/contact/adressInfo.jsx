@@ -1,7 +1,14 @@
+// React
 import React, { useState, useEffect } from "react";
+
+// Material UI
 import { Grid, MenuItem, CircularProgress } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+// Input Mask
 import InputMask from "react-input-mask";
+
+// Styled Components
 import {
   InfoContainer,
   CustomInputLabel,
@@ -9,8 +16,13 @@ import {
   CustomSelect,
   CustomOutlinedInput,
 } from "./stylesComponent";
+
+// Data
 import { brazilStates } from "../../data/clientData";
+
+// Hooks
 import useAddressByCep from "../../hooks/useAdressByCep";
+
 
 const AddressInfo = ({ setFormData }) => {
   const [cep, setCep] = useState("");

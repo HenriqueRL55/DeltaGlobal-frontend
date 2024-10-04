@@ -1,8 +1,16 @@
+// React
 import React, { useState } from "react";
+
+// Styled Components
 import { MainContainer, CustomMainTypography } from "./searchPage.styles";
+
+// Components
 import FilterComponent from "../../components/search/filterComponent";
 import ProductTable from "../../components/search/productTableComponent";
-import productData from "../../data/productData"; 
+
+// Data
+import productData from "../../data/productData";
+
 
 const SearchPage = () => {
   const [filters, setFilters] = useState({

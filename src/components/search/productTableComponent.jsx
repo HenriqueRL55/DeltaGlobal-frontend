@@ -1,4 +1,7 @@
+// React
 import React, { useState } from "react";
+
+// Material UI Components
 import {
   Table,
   TableBody,
@@ -10,9 +13,16 @@ import {
   TablePagination,
   TableSortLabel,
 } from "@mui/material";
+
+// Material UI Icons
 import SortIcon from "@mui/icons-material/Sort";
+
+// Styled Components
 import { CustomTableContainer } from "./styleSearch";
+
+// Data
 import productData from "../../data/productData";
+
 
 const sumOneDay = (date) => {
   const result = new Date(date);

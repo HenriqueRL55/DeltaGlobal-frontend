@@ -1,4 +1,7 @@
+// Styled Components
 import styled from "styled-components";
+
+// Material UI Components
 import {
   InputLabel,
   TextField,
@@ -6,6 +9,7 @@ import {
   OutlinedInput,
   Button,
 } from "@mui/material";
+
 
 export const InfoContainer = styled.div`
   background-color: #f9f9f9;
