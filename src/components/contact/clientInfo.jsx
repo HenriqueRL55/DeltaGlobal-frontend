@@ -140,7 +140,16 @@ const ClientInfo = ({ setFormData }) => {
         </Grid>
 
         <Grid item xs={12} md={3}>
-          <CustomInputLabel required>Data de Nascimento</CustomInputLabel>
+          <CustomInputLabel
+            sx={{
+              "& .MuiInputLabel-asterisk": {
+                color: "#FF4B6A",
+              },
+            }}
+            required
+          >
+            Data de Nascimento
+          </CustomInputLabel>
           <CustomTextField
             type="date"
             slotProps={{

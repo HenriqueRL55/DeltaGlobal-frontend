@@ -13,7 +13,7 @@ const useFormHandler = () => {
     cpf: "",
     rg: "",
     phone: "",
-    birthDate: "",
+    birthDate: "", 
     address: "",
     number: "",
     neighborhood: "",
@@ -24,12 +24,13 @@ const useFormHandler = () => {
   const [isCpfValid, setIsCpfValid] = useState(true);
 
   const validateRequiredFields = () => {
-    const { name, email, cpf } = formData;
+    const { name, email, cpf, birthDate } = formData; 
     const missing = [];
 
     if (!name) missing.push("Nome");
     if (!email) missing.push("E-mail");
     if (!cpf) missing.push("CPF");
+    if (!birthDate) missing.push("Data de Nascimento"); 
 
     return missing;
   };
@@ -40,9 +41,8 @@ const useFormHandler = () => {
     const isCpfCurrentlyValid = validateCPF(formData.cpf);
     setIsCpfValid(isCpfCurrentlyValid);
 
+    let alertMessage = "Por favor, preencha os seguintes campos obrigatórios: ";
     if (missing.length > 0 || !isCpfCurrentlyValid) {
-      let alertMessage =
-        "Por favor, preencha os seguintes campos obrigatórios: ";
       if (missing.length > 0) {
         alertMessage += missing.join(", ");
       }
