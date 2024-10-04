@@ -1,5 +1,10 @@
+//React
 import React from "react";
+
+//Styled Components
 import { CustomSelect, CustomInputLabel } from "../search/styleSearch";
+
+//Material UI
 import { MenuItem } from "@mui/material";
 
 const SelectField = ({ label, name, value, onChange, options }) => {

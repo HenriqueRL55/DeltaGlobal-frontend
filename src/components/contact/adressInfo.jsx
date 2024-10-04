@@ -2,7 +2,12 @@
 import React, { useState, useEffect } from "react";
 
 // Material UI
-import { Grid, MenuItem, CircularProgress } from "@mui/material";
+import {
+  Grid,
+  CircularProgress,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 // Input Mask
@@ -13,8 +18,8 @@ import {
   InfoContainer,
   CustomInputLabel,
   CustomTypography,
-  CustomSelect,
   CustomOutlinedInput,
+  CustomAutocomplete,
 } from "./stylesComponent";
 
 // Data
@@ -52,7 +57,7 @@ const AddressInfo = ({ setFormData }) => {
     if (pastedValue.length === 8) {
       setCep(pastedValue);
       handleInputChange("cep", pastedValue);
-      fetchAddress(pastedValue); 
+      fetchAddress(pastedValue);
     }
     e.preventDefault();
   };
@@ -108,7 +113,7 @@ const AddressInfo = ({ setFormData }) => {
           <CustomOutlinedInput
             placeholder="5º Andar"
             fullWidth
-            value={localAddress.complement} 
+            value={localAddress.complement}
             onChange={(e) => handleInputChange("complement", e.target.value)}
           />
         </Grid>
@@ -135,22 +140,33 @@ const AddressInfo = ({ setFormData }) => {
 
         <Grid item xs={12} md={4}>
           <CustomInputLabel>Estado</CustomInputLabel>
-          <CustomSelect
-            slotProps={{
-              select: {
-                IconComponent: KeyboardArrowDownIcon,
-              },
-            }}
+          <CustomAutocomplete
+            freeSolo
             fullWidth
-            value={localAddress.state}
-            onChange={(e) => handleInputChange("state", e.target.value)}
-          >
-            {brazilStates.map((state) => (
-              <MenuItem key={state.value} value={state.value}>
-                {state.label}
-              </MenuItem>
-            ))}
-          </CustomSelect>
+            options={brazilStates.map((state) => state.label)}
+            value={localAddress.state || ""}
+            onInputChange={(event, newInputValue) =>
+              handleInputChange("state", newInputValue)
+            }
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                placeholder="Selecionar"
+                fullWidth
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <>
+                      {params.InputProps.endAdornment}
+                      <InputAdornment position="end">
+                        <KeyboardArrowDownIcon />
+                      </InputAdornment>
+                    </>
+                  ),
+                }}
+              />
+            )}
+          />
         </Grid>
       </Grid>
     </InfoContainer>

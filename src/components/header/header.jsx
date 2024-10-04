@@ -4,7 +4,6 @@ import React from "react";
 // Material UI Components
 import { AppBar, Toolbar, Box } from "@mui/material";
 
-
 const Header = () => {
   return (
     <AppBar sx={{ backgroundColor: "#0170A5" }} position="absolute">

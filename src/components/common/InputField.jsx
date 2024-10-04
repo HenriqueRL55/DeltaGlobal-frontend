@@ -1,4 +1,7 @@
+//React
 import React from "react";
+
+//Styled Components
 import { CustomTextField, CustomInputLabel } from "../search/styleSearch";
 
 export const InputField = ({ label, name, value, onChange, type = "text", placeholder = "", ...rest }) => {

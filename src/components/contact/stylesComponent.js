@@ -5,9 +5,9 @@ import styled from "styled-components";
 import {
   InputLabel,
   TextField,
-  Select,
   OutlinedInput,
   Button,
+  Autocomplete,
 } from "@mui/material";
 
 
@@ -48,7 +48,7 @@ export const CustomTextField = styled(TextField)`
   text-align: left;
 `;
 
-export const CustomSelect = styled(Select)`
+export const CustomAutocomplete = styled(Autocomplete)`
   color: #adadad;
   font-size: 14px;
   font-weight: regular;

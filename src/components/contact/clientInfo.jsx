@@ -1,16 +1,26 @@
-import React from "react";
-import { Grid, MenuItem } from "@mui/material";
+//React
+import React from "react"; 
+
+// Material UI
+import { Grid, TextField, InputAdornment } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+// Data
 import InputMask from "react-input-mask";
+import { clientNames } from "../../data/clientData";
+
+//Services
+import { validateCPF } from "../../services/validateCPF";
+
+// Material UI 
 import {
   InfoContainer,
   CustomInputLabel,
   CustomOutlinedInput,
   CustomTypography,
-  CustomSelect,
+  CustomAutocomplete,
 } from "./stylesComponent";
-import { clientNames } from "../../data/clientData";
-import { validateCPF } from "../../services/validateCPF";
+
 
 const ClientInfo = ({ formData, setFormData }) => {
   const handleInputChange = (field, value) => {
@@ -45,23 +55,35 @@ const ClientInfo = ({ formData, setFormData }) => {
           >
             Nome
           </CustomInputLabel>
-          <CustomSelect
+
+          <CustomAutocomplete
+            freeSolo
             fullWidth
-            required
+            options={clientNames}
             value={formData.name || ""}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-            slotProps={{
-              select: {
-                IconComponent: KeyboardArrowDownIcon,
-              },
-            }}
-          >
-            {clientNames.map((name, index) => (
-              <MenuItem key={index} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </CustomSelect>
+            onInputChange={(event, newInputValue) =>
+              handleInputChange("name", newInputValue)
+            }
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                placeholder="Buscar Cliente"
+                required
+                fullWidth
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <>
+                      {params.InputProps.endAdornment}
+                      <InputAdornment position="end">
+                        <KeyboardArrowDownIcon />
+                      </InputAdornment>
+                    </>
+                  ),
+                }}
+              />
+            )}
+          />
         </Grid>
 
         <Grid item xs={12} md={4.5}>
