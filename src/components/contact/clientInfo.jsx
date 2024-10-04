@@ -49,7 +49,6 @@ const ClientInfo = ({ setFormData }) => {
                 IconComponent: KeyboardArrowDownIcon,
               },
             }}
-            label="Selecionar"
             select
             fullWidth
             onChange={(e) => handleInputChange("name", e.target.value)}

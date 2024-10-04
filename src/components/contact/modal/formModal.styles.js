@@ -26,11 +26,11 @@ export const ModalContent = styled.div`
 
 export const InfoGroup = styled.div`
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   margin: 40px 20px;
   text-align: left;
-  word-break: break-word; 
-  max-width: 100%; 
+  word-break: break-word;
+  max-width: 100%;
 
   @media (max-width: 900px) {
     max-height: 200px;
@@ -42,7 +42,7 @@ export const TitleField = styled.div`
   font-size: 13px;
   color: #565656;
   font-weight: medium;
-  word-break: break-word; 
+  word-break: break-word;
   max-width: 100%;
 `;
 
@@ -50,8 +50,8 @@ export const InfoField = styled.div`
   font-size: 13px;
   color: #565656;
   font-weight: regular;
-  word-break: break-word; 
-  max-width: 100%; 
+  word-break: break-word;
+  max-width: 100%;
   overflow-y: auto;
   max-height: 50px;
 `;
@@ -73,7 +73,7 @@ export const ButtonGroup = styled.div`
   width: 100%;
   margin-top: 30px;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 `;
 
 export const ConfirmButton = styled.button`

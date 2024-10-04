@@ -40,7 +40,6 @@ const ContactForm = () => {
   const handleFormSubmit = () => {
     const missing = validateRequiredFields();
 
-    // Verifica se o CPF é válido
     const isCpfCurrentlyValid = validateCPF(formData.cpf);
     setIsCpfValid(isCpfCurrentlyValid);
 
