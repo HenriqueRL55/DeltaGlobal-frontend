@@ -1,42 +1,33 @@
-// React
-import React, { useState } from "react";
-
-// Material UI
+import React from "react";
 import { Grid, MenuItem } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
-// Input Mask
 import InputMask from "react-input-mask";
-
-// Styled Components
 import {
   InfoContainer,
   CustomInputLabel,
-  CustomTextField,
+  CustomOutlinedInput,
   CustomTypography,
   CustomSelect,
-  CustomOutlinedInput,
 } from "./stylesComponent";
-
-// Data
 import { clientNames } from "../../data/clientData";
-
-// Services
 import { validateCPF } from "../../services/validateCPF";
 
-const ClientInfo = ({ setFormData }) => {
-  const [cpf, setCpf] = useState("");
-  const [isCpfValid, setIsCpfValid] = useState(true);
-
+const ClientInfo = ({ formData, setFormData }) => {
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleCpfChange = (event) => {
     const value = event.target.value;
-    setCpf(value);
-    setIsCpfValid(validateCPF(value));
+    const cleanValue = value.replace(/\D/g, "");
     handleInputChange("cpf", value);
+
+    if (cleanValue.length === 11) {
+      const isValid = validateCPF(cleanValue);
+      setFormData((prev) => ({ ...prev, isCpfValid: isValid }));
+    } else {
+      setFormData((prev) => ({ ...prev, isCpfValid: true }));
+    }
   };
 
   return (
@@ -55,14 +46,15 @@ const ClientInfo = ({ setFormData }) => {
             Nome
           </CustomInputLabel>
           <CustomSelect
+            fullWidth
+            required
+            value={formData.name || ""}
+            onChange={(e) => handleInputChange("name", e.target.value)}
             slotProps={{
               select: {
                 IconComponent: KeyboardArrowDownIcon,
               },
             }}
-            select
-            fullWidth
-            onChange={(e) => handleInputChange("name", e.target.value)}
           >
             {clientNames.map((name, index) => (
               <MenuItem key={index} value={name}>
@@ -71,21 +63,14 @@ const ClientInfo = ({ setFormData }) => {
             ))}
           </CustomSelect>
         </Grid>
+
         <Grid item xs={12} md={4.5}>
-          <CustomInputLabel
-            required
-            sx={{
-              "& .MuiInputLabel-asterisk": {
-                color: "#FF4B6A",
-              },
-            }}
-          >
-            E-mail
-          </CustomInputLabel>
+          <CustomInputLabel required>E-mail</CustomInputLabel>
           <CustomOutlinedInput
             placeholder="exemplo@exemplo.com.br"
             fullWidth
             required
+            value={formData.email || ""}
             onChange={(e) => handleInputChange("email", e.target.value)}
           />
         </Grid>
@@ -103,18 +88,20 @@ const ClientInfo = ({ setFormData }) => {
           </CustomInputLabel>
           <InputMask
             mask="999.999.999-99"
-            value={cpf}
+            value={formData.cpf || ""}
             onChange={handleCpfChange}
           >
             {() => (
               <CustomOutlinedInput
                 placeholder="000.000.000-00"
-                error={!isCpfValid}
+                error={formData.isCpfValid === false}
                 fullWidth
               />
             )}
           </InputMask>
-          {!isCpfValid && <p style={{ color: "red" }}>CPF inválido</p>}
+          {formData.isCpfValid === false && (
+            <p style={{ color: "red" }}>CPF inválido</p>
+          )}
         </Grid>
 
         <Grid item xs={12} md={3}>
@@ -123,6 +110,7 @@ const ClientInfo = ({ setFormData }) => {
             placeholder="0000000000"
             fullWidth
             inputProps={{ maxLength: 10 }}
+            value={formData.rg || ""}
             onChange={(e) => handleInputChange("rg", e.target.value)}
           />
         </Grid>
@@ -131,6 +119,7 @@ const ClientInfo = ({ setFormData }) => {
           <CustomInputLabel>Telefone</CustomInputLabel>
           <InputMask
             mask="(99) 99999-9999"
+            value={formData.phone || ""}
             onChange={(e) => handleInputChange("phone", e.target.value)}
           >
             {() => (
@@ -141,24 +130,20 @@ const ClientInfo = ({ setFormData }) => {
 
         <Grid item xs={12} md={3}>
           <CustomInputLabel
+            required
             sx={{
               "& .MuiInputLabel-asterisk": {
                 color: "#FF4B6A",
               },
             }}
-            required
           >
             Data de Nascimento
           </CustomInputLabel>
-          <CustomTextField
+          <CustomOutlinedInput
             type="date"
-            slotProps={{
-              inputLabel: {
-                shrink: true,
-              },
-            }}
             fullWidth
             required
+            value={formData.birthDate || ""}
             onChange={(e) => handleInputChange("birthDate", e.target.value)}
           />
         </Grid>

@@ -70,7 +70,12 @@ const Modal = ({ formData, onClose, onConfirm }) => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TitleField>Data de Nascimento</TitleField>
-              <InfoField>{formData.birthDate}</InfoField>
+              <InfoField>
+  {formData.birthDate 
+    ? new Date(formData.birthDate + "T00:00:00").toLocaleDateString('pt-BR') 
+    : ''}
+</InfoField>
+
             </Grid>
 
             <Grid item xs={12} md={12}>

@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // Material UI Components
-import { InputLabel, TextField, Select, Button } from "@mui/material";
+import { InputLabel, TextField, Select, Button, Paper } from "@mui/material";
 
 export const InfoContainer = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const InfoContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-export const CustomTableContainer = styled.div`
+export const CustomTableContainer = styled(Paper)`
   border: 1px solid #f1f1f1;
   border-radius: 8px;
   @media (max-width: 650px) {

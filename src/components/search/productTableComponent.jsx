@@ -29,6 +29,20 @@ const ProductTable = ({ filters }) => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const rowsPerPage = 4;
 
+  const sortData = (a, b, key) => {
+    if (key === "data") {
+      const dateA = new Date(a.dataInicio);
+      const dateB = new Date(b.dataInicio);
+      return sortConfig.direction === "asc" ? dateA - dateB : dateB - dateA;
+    } else {
+      const fieldA = a[key].toLowerCase();
+      const fieldB = b[key].toLowerCase();
+      if (fieldA < fieldB) return sortConfig.direction === "asc" ? -1 : 1;
+      if (fieldA > fieldB) return sortConfig.direction === "asc" ? 1 : -1;
+      return 0;
+    }
+  };
+
   const filteredData = productData
     .filter((row) => {
       const matchesSearch = filters.search
@@ -54,12 +68,7 @@ const ProductTable = ({ filters }) => {
     })
     .sort((a, b) => {
       if (sortConfig.key) {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === "asc" ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === "asc" ? 1 : -1;
-        }
+        return sortData(a, b, sortConfig.key);
       }
       return 0;
     });

@@ -29,8 +29,8 @@ const ContactForm = () => {
           </Alert>
         </Grid>
       ) : null}
-      <ClientInfo setFormData={setFormData} />
-      <AddressInfo setFormData={setFormData} />
+      <ClientInfo formData={formData} setFormData={setFormData} />
+      <AddressInfo formData={formData} setFormData={setFormData} />
       <SubmitButton onSubmit={handleFormConfirmation} />
       {isModalOpen && (
         <Modal

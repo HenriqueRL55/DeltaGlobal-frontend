@@ -63,13 +63,6 @@ const productData = [
     dataFim: "2024-11-25",
   },
   {
-    id: "56984778",
-    produto: "AUTO FROTA 1000KM",
-    status: "Ativo",
-    dataInicio: "2020-12-30",
-    dataFim: "2023-12-30",
-  },
-  {
     id: "56984779",
     produto: "AUTO FROTA 110KM",
     status: "Inativo",
