@@ -51,6 +51,22 @@ Siga os passos abaixo para configurar o projeto localmente:
 
 Após rodar o comando npm run dev, o Vite iniciará um servidor de desenvolvimento. Você poderá acessar o projeto na URL fornecida pelo terminal, geralmente http://localhost:5173/.
 
+## Decisões do Projeto
+
+Durante o desenvolvimento, foram tomadas decisões que priorizaram a entrega de uma solução funcional e escalável. O projeto foi estruturado de forma modular, com componentes reutilizáveis e bem organizados. A divisão entre páginas e componentes foi uma escolha estratégica para manter a legibilidade do código, facilitando tanto a manutenção quanto a escalabilidade futura do projeto. Essa organização permitiu a implementação eficiente das funcionalidades esperadas.
+
+Em relação a estilização foi utilizada a biblioteca Styled Components, que proporcionou uma estrutura de estilos organizada e escalável. A responsividade foi um ponto fundamental no desenvolvimento do projeto, utilizando o sistema de Grid do Material UI, foi possível garantir que o layout da aplicação se adaptasse a diferentes resoluções de tela, mantendo a navegabilidade eficiente tanto em dispositivos móveis quanto em desktops. Além disso, a navegação entre as diferentes telas foi realizada com o uso do React Router DOM, garantindo que o projeto se comportasse como uma Single Page Application (SPA), onde a experiência de navegação é fluida e sem recarregamentos completos da página.
+
+Para as funcionalidades de requisições HTTP, como a obtenção de dados de endereço via CEP, a biblioteca Axios foi utilizada. Ela possibilitou a comunicação com a API ViaCEP, que foi integrada para preencher automaticamente os campos de endereço no formulário de contato. Além disso, a biblioteca React Input Mask foi utilizada para aplicar máscaras de formatação em campos de formulário, como o campo de CPF, assegurando uma melhor experiência de preenchimento.
+
+
+## Possíveis Melhorias
+
+Em termos de qualidade de código, uma melhoria significativa seria a implementação de testes automatizados. A inclusão de testes unitários e de integração, com ferramentas como Jest e React Testing Library, garantiria a robustez da aplicação, verificando o funcionamento correto de componentes e rotas, evitando erros futuros.
+
+Além disso, o uso de memoização em componentes que não precisam ser re-renderizados frequentemente, como os filtros de produto, ajudaria a melhorar o desempenho da aplicação. Ferramentas como o React.memo podem ser utilizadas para evitar renderizações desnecessárias, tornando a aplicação mais eficiente. O cache de requisições, especialmente para dados que não mudam com frequência (como a lista de produtos), também pode ser introduzido para reduzir a necessidade de múltiplas requisições à API.
+
+
 ## Considerações Finais
 
 Este projeto foi desenvolvido com foco em boas práticas de programação, qualidade de código e entrega de uma solução funcional. Todos os componentes foram criados com ReactJS e estilizados utilizando Styled Components e Material UI para uma interface moderna e intuitiva.
