@@ -20,7 +20,6 @@ import { Grid } from "@mui/material";
 // Components
 import ConfirmModal from "../confirmModal/confirmModal";
 
-
 const Modal = ({ formData, onClose, onConfirm }) => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
@@ -76,7 +75,11 @@ const Modal = ({ formData, onClose, onConfirm }) => {
 
             <Grid item xs={12} md={12}>
               <TitleField>Endereço</TitleField>
-              <InfoField>{`${formData.address} ${formData.number} ${formData.neighborhood} ${formData.city} ${formData.state} ${formData.cep}`}</InfoField>
+              <InfoField>{`${formData.address} ${formData.number} ${
+                formData.complement ? `${formData.complement}` : ""
+              } ${formData.neighborhood} ${formData.city} ${
+                formData.state
+              } CEP: ${formData.cep}`}</InfoField>
             </Grid>
           </Grid>
         </InfoGroup>

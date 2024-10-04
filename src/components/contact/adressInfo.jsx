@@ -41,6 +41,7 @@ const AddressInfo = ({ setFormData }) => {
   const handleCepChange = (event) => {
     const value = event.target.value.replace(/\D/g, "");
     setCep(value);
+    handleInputChange("cep", value);
     if (value.length === 8) {
       fetchAddress(value);
     }
@@ -50,7 +51,8 @@ const AddressInfo = ({ setFormData }) => {
     const pastedValue = e.clipboardData.getData("Text").replace(/\D/g, "");
     if (pastedValue.length === 8) {
       setCep(pastedValue);
-      fetchAddress(pastedValue);
+      handleInputChange("cep", pastedValue);
+      fetchAddress(pastedValue); 
     }
     e.preventDefault();
   };
@@ -106,6 +108,7 @@ const AddressInfo = ({ setFormData }) => {
           <CustomOutlinedInput
             placeholder="5º Andar"
             fullWidth
+            value={localAddress.complement} 
             onChange={(e) => handleInputChange("complement", e.target.value)}
           />
         </Grid>

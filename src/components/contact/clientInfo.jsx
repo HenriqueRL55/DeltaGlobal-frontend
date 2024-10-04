@@ -24,7 +24,6 @@ import { clientNames } from "../../data/clientData";
 // Services
 import { validateCPF } from "../../services/validateCPF";
 
-
 const ClientInfo = ({ setFormData }) => {
   const [cpf, setCpf] = useState("");
   const [isCpfValid, setIsCpfValid] = useState(true);
@@ -123,6 +122,7 @@ const ClientInfo = ({ setFormData }) => {
           <CustomOutlinedInput
             placeholder="0000000000"
             fullWidth
+            inputProps={{ maxLength: 10 }}
             onChange={(e) => handleInputChange("rg", e.target.value)}
           />
         </Grid>
